@@ -1,10 +1,198 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+body {
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.header {
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-title {
+  color: purple;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info span {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.logout-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+  background: #c82333;
+}
+
+/* Main Content - full width */
+.main-content {
+  width: 100%;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+/* Form */
+.todo-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.todo-form input[type="text"] {
+  flex: 1;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  max-width: 400px;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 8px 16px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.tab:hover {
+  background: #d5d5d5;
+}
+
+.tab.active {
+  background: #007bff;
+  color: white;
+}
+
+/* Todo List */
+.todo-list {
+  list-style: none;
+  padding: 0 10%;
+}
+
+.todo-item {
+  background: #fff;
+  margin-bottom: 12px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  color: green;
+}
+
+/* Buttons inside Todo List */
+.btn {
+  padding: 6px 12px;
+  margin-left: 5px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.complete-btn {
+  background-color: #28a745;
+}
+
+.complete-btn:hover {
+  background-color: #218838;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+/* Footer */
+.footer {
+  background: #333;
+  color: white;
+  padding: 12px 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+/* Responsive (Optional for small screens) */
+@media (max-width: 600px) {
+  .todo-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .todo-form input[type="text"] {
+    max-width: 90%;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .todo-list {
+    padding: 0 5%;
+  }
+}

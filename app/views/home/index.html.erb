@@ -1,0 +1,39 @@
+
+
+<div class="main-content">
+  <h2 class="greeting">Welcome, <%= @username %>!</h2>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "logout-button", form: { "data-turbo" => "false" } %>
+  
+  <%= form_with(model: @todo, url: todos_path, local: true, class: "todo-form") do |f| %>
+    <%= f.text_field :title, placeholder: "What do you need to do?", required: true %>
+    <%= f.hidden_field :status, value: "pending" %>
+    <%= f.submit "Add Todo", class: "add-button" %>
+  <% end %>
+
+  <div class="tabs month-tabs">
+    <%= link_to 'This Month', root_path(month_filter: 'this_month'), class: "tab #{params[:month_filter] == 'previous_months' ? '' : 'active'}" %>
+    <%= link_to 'Previous Months', root_path(month_filter: 'previous_months'), class: "tab #{params[:month_filter] == 'previous_months' ? 'active' : ''}" %>
+  </div>
+
+  <div class="tabs status-tabs">
+    <%= link_to 'All', root_path(filter: 'all'), class: "tab #{'active' if params[:filter] == 'all' || params[:filter].blank?}" %>
+    <%= link_to 'Pending', root_path(filter: 'pending'), class: "tab #{'active' if params[:filter] == 'pending'}" %>
+    <%= link_to 'Completed', root_path(filter: 'completed'), class: "tab #{'active' if params[:filter] == 'completed'}" %>
+  </div>
+
+  <ul class="todo-list">
+    <% @todos.each do |todo| %>
+      <li class="todo-item <%= todo.status %>">
+        <span><%= todo.title %></span>
+        <div>
+          <% if todo.status == "pending" %>
+            <%= button_to "Complete", todo_path(todo, todo: { status: "completed" }), method: :patch, class: "btn complete-btn" %>
+          <% end %>
+          <%= button_to "Delete", todo_path(todo), method: :delete, class: "btn delete-btn" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="footer">&copy; <%= Time.now.year %> To-Do App</div>
